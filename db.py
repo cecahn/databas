@@ -7,7 +7,7 @@ from sshtunnel import SSHTunnelForwarder
 
 ssh_hostname = 'beurling.it.uu.se:22'
 ssh_username = 'soal1262'
-ssh_password = 'hejHejhej22'
+ssh_password = 
 database_username = 'ht22_2_group_45'
 database_password = 'slayqueens'
 database_name = 'ecommerce'
