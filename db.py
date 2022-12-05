@@ -49,7 +49,7 @@ def mysql_connect():
         port=tunnel.local_bind_port
     )
     
-  def run_query(sql):
+def run_query(sql):
     """Runs a given SQL query via the global database connection.
     
     :param sql: MySQL query
@@ -68,7 +68,7 @@ mydb = mysql.connector.connect(
 
 print(mydb)
 
-# mycursor = mydb.cursor()
+mycursor = mydb.cursor()
 
 
 
@@ -99,3 +99,82 @@ def mysql_disconnect():
     """
     
     connection.close()
+    
+    
+mycursor.execute('''
+CREATE TABLE User(
+SSN int ,
+Name nvarchar(255),
+Email nvarchar(255),
+Adress nvarchar(255),
+Password nvarchar(255),
+Phone_number int,
+User_Agreement bool,
+Ordered_Product_ID int,
+Review_ID int,
+PRIMARY KEY (SSN)
+);
+''')
+
+mycursor.execute('''
+CREATE TABLE Review(
+Review_ID int NOT NULL,
+Star_rating int,
+Longer_review nvarchar(255),
+Product_ID int,
+PRIMARY KEY (Review_ID)
+);
+
+''')
+mycursor.execute('''
+
+CREATE TABLE Product(
+Product_ID int NOT NULL,
+Title VARCHAR(255),
+Product_desc nvarchar(255),
+Stock_quantity int,
+Price int,
+Average_rating int,
+Related_product_ID int,
+PRIMARY KEY (Product_ID)
+);
+
+''')
+
+mycursor.execute('''
+
+CREATE TABLE Department(
+Dep_ID int NOT NULL,
+Title nvarchar(255),
+Desc_of_dep nvarchar(255),
+Product_ID array,
+Child_dep_ID array,
+PRIMARY KEY (Dep_ID)
+);
+''')
+
+mycursor.execute( '''
+    CREATE TABLE Order(
+Order_ID int NOT NULL,
+Order_date int,
+Order_status nvarchar(255),
+Tracking_number int,
+Payment_ref nvarchar(255),
+Date_last_changed int,
+Ordered_product_id int,
+PRIMARY KEY (Order_ID)
+);
+''')
+
+def insert_topdep(depar_id, deptitle, desc): #dep id borde väljas utifrån vad som finns redan
+    sql = "INSERT INTO Department (Dep_ID, Title, Desc_of_dep, Product_ID, Child_dep_ID ) VALUES (%s, %s, %s, %s, %s)"
+    val = [depar_id, deptitle, desc, None, None]
+    mycursor.execute(sql, val)
+    
+def insert_many_products(product_id, title, desc, quantity, price):
+    sql = " INSERT INTO  Product (Product_ID, Title, Product_Desc, Stock_quantity, Price) VALUES(%)"
+
+def insert_child_dep(top_depar_id, child_dep_id, dep_title, desc):
+    sql = 
+
+    #
