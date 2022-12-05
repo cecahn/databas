@@ -171,8 +171,10 @@ def insert_topdep(depar_id, deptitle, desc): #dep id borde väljas utifrån vad 
     val = [depar_id, deptitle, desc, None, None]
     mycursor.execute(sql, val)
     
-def insert_many_products(product_id, title, desc, quantity, price):
-    sql = " INSERT INTO  Product (Product_ID, Title, Product_Desc, Stock_quantity, Price) VALUES(%)"
+def insert_a_product(product_id, title, desc, quantity, price):
+    sql = " INSERT INTO  Product (Product_ID, Title, Product_Desc, Stock_quantity, Price) VALUES(%s, %s, %s, %s, %s)"
+    val = [product_id, title, desc, quantity, price]
+    mycursor.execute(sql,val)
 
 def insert_child_dep(top_depar_id, child_dep_id, dep_title, desc):
     sql = 
