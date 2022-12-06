@@ -25,8 +25,8 @@ Product_desc VARCHAR(255),
 Stock_quantity int,
 Price int NOT NULL,
 Average_rating int,
-Depart_ID VARCHAR(255)
-PRIMARY KEY (Product_ID)
+Depart_ID VARCHAR(255),
+PRIMARY KEY (Product_ID),
 FOREIGN KEY (Depart_ID) REFERENCES Department(Title)
 );
 
@@ -40,6 +40,7 @@ FOREIGN KEY (Dep_ID) REFERENCES Department(Title)
 
 CREATE TABLE Order(
 Order_ID int NOT NULL,
+user_order int,
 Order_date int,
 Order_status VARCHAR(255),
 Tracking_number int,
@@ -47,7 +48,8 @@ Payment_ref VARCHAR(255),
 Date_last_changed int,
 Ordered_product_id int,
 PRIMARY KEY (Order_ID),
-FOREIGN KEY (Ordered_product_id) REFERENCES Product(Product_ID)
+FOREIGN KEY (Ordered_product_id) REFERENCES Product(Product_ID),
+FOREIGN KEY (user_order) REFERENCES User(SSN)
 );
 
 CREATE TABLE Featured_prod(
@@ -55,8 +57,12 @@ CREATE TABLE Featured_prod(
     Ft_Desc VARCHAR(255),
     CurrentPrice int NOT NULL,
     Featured_Prod_ID int,
-    PRIMARY KEY (?),
     FOREIGN KEY (Featured_Prod_ID) REFERENCES Product(Product_ID)
 )
 
-CREATE TABLE Featured_prod
+CREATE TABLE Featured_dep(
+    Title VARCHAR(255),
+    Short_desc VARCHAR(255),
+    Dep_ID VARCHAR (255),
+    FOREIGN KEY (Dep_ID) REFERENCES Department(Title)
+)

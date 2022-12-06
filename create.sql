@@ -34,7 +34,10 @@ INSERT INTO Review (Review_ID, Star_rating, Longer_review, Product_ID) VALUES ('
 INSERT INTO User (SNN, Name, Email, Adress, Password, Phone_number, User_Agreement, Ordered_Product_ID, Review_ID) VALUES ('1234', 'Cissi', 'cissi@mail.com', 'Uppsala', 'hej', '123456', '1', '8', '1');
 INSERT INTO User (SNN, Name, Email, Adress, Password, Phone_number, User_Agreement, Ordered_Product_ID, Review_ID) VALUES ('5678', 'Sofia', 'sofia@mail.com', 'Stockholm', 'hej', '789101', '1', '5', '2');
 
---Featured products
+--Order
+INSERT INTO Order (order_ID, user_order, order_date, tracking_number, payment_ref, date_last_changed, order_product_ID) VALUES ('1', '5678', '260322', 'Send', '123456789', 'Klarna', '260322', '8');
+
+--Featured department
 INSERT INTO Featured_dep (Title, Short_desc, Dep_ID) VALUES ('Electronics', 'All kinds of electronics!','Electronics');
 INSERT INTO Featured_dep (Title, Short_desc, Dep_ID) VALUES ('Books', 'Lots of good books','Books');
 
