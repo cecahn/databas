@@ -26,17 +26,17 @@ Product_desc VARCHAR(255),
 Stock_quantity int,
 Price int,
 Average_rating int,
-Related_product_ID int,
+Depart_ID VARCHAR(255)
 PRIMARY KEY (Product_ID)
+FOREIGN KEY (Depart_ID) REFERENCES Department(Title)
 );
 
 CREATE TABLE Department(
-Dep_ID int NOT NULL,
+Dep_ID VARCHAR(255),
 Title VARCHAR(255),
 Desc_of_dep VARCHAR(255),
-Product_ID array,
-Child_dep_ID array,
-PRIMARY KEY (Dep_ID)
+PRIMARY KEY (Title),
+FOREIGN KEY (Dep_ID) REFERENCES Department(Title)
 );
 
 CREATE TABLE Order(
@@ -47,5 +47,6 @@ Tracking_number int,
 Payment_ref VARCHAR(255),
 Date_last_changed int,
 Ordered_product_id int,
-PRIMARY KEY (Order_ID)
+PRIMARY KEY (Order_ID),
+FOREIGN KEY (Ordered_product_id) REFERENCES Product(Product_ID)
 );
