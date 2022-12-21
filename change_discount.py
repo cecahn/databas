@@ -27,7 +27,7 @@ new_discount = input("What is the new discount  ")
 change_discount = ("UPDATE Product SET Discount = {}".format(float(new_discount)))
 mycursor.execute(change_discount)
 
-print_product =("SELECT Title, Price*Discount FROM Product WHERE Product_ID = {}".format ( int(user_input)))
+print_product =("SELECT Title, floor(Price*Discount) FROM Product WHERE Product_ID = {}".format ( int(user_input)))
 
 mycursor.execute(print_product)
 
